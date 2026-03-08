@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmos Partition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="cosmos-background"></div>
+    <div id="game-container">
+        <div id="ui">
+            <div id="stats">
+                <span>Score: <span id="score">0</span></span>
+                <span>Ships: <span id="lives">3</span></span>
+                <span>Filled: <span id="filled">0</span>%</span>
+                <span>Level: <span id="level">1</span></span>
+            </div>
+            <div id="controls">Move: <kbd>Arrows</kbd></div>
+        </div>
+        <canvas id="gameCanvas" width="840" height="640"></canvas>
+        <div id="overlay" class="hidden">
+            <h1 id="overlay-title">Cosmos Partition</h1>
+            <p id="overlay-msg">Trap the black holes. Steer the rocket onto the canvas to draw a laser trail. Touch a
+                wall to seal it.</p>
+            <button id="restart-btn">Ignition</button>
+        </div>
+    </div>
+    <script src="main.js"></script>
+</body>
+
+</html>
