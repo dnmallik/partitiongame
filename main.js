@@ -279,6 +279,42 @@ canvas.addEventListener('touchend', e => {
     // ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].forEach(k => state.keys[k] = false);
 });
 
+// D-Pad Event Listeners
+['up', 'down', 'left', 'right'].forEach(dir => {
+    const btn = document.getElementById(`btn-${dir}`);
+    if (btn) {
+        const keyName = `Arrow${dir.charAt(0).toUpperCase() + dir.slice(1)}`;
+        
+        // Touch events for mobile
+        btn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            // Reset other keys to prevent conflicting directions
+            ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].forEach(k => state.keys[k] = false);
+            state.keys[keyName] = true;
+        }, { passive: false });
+        
+        btn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            state.keys[keyName] = false;
+        }, { passive: false });
+
+        // Mouse events for testing on desktop if resized
+        btn.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].forEach(k => state.keys[k] = false);
+            state.keys[keyName] = true;
+        });
+        
+        btn.addEventListener('mouseup', (e) => {
+            e.preventDefault();
+            state.keys[keyName] = false;
+        });
+        btn.addEventListener('mouseleave', (e) => {
+            state.keys[keyName] = false;
+        });
+    }
+});
+
 function loseLife() {
     state.lives--;
     for (let pt of state.trail) {

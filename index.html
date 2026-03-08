@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cosmos Partition</title>
+    <meta name="theme-color" content="#050011">
+    <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -27,8 +28,23 @@
                 wall to seal it.</p>
             <button id="restart-btn">Ignition</button>
         </div>
+        <div id="dpad" class="dpad-container">
+            <button class="dpad-btn dpad-up" id="btn-up">▲</button>
+            <button class="dpad-btn dpad-left" id="btn-left">◀</button>
+            <button class="dpad-btn dpad-right" id="btn-right">▶</button>
+            <button class="dpad-btn dpad-down" id="btn-down">▼</button>
+        </div>
     </div>
     <script src="main.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('SW registered!', reg))
+                    .catch(err => console.log('SW registration failed', err));
+            });
+        }
+    </script>
 </body>
 
 </html>
